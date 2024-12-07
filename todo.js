@@ -10,6 +10,23 @@ form.addEventListener("submit", addTodo);
 
 document.addEventListener("DOMContentLoaded", loadAllTodos);
 
+secondCardBody.addEventListener("click", deleteTodo);
+
+function deleteTodo(e){
+    if(e.target.className === "fa fa-remove"){
+        e.target.parentElement.parentElement.remove();
+        const text = e.target.parentElement.parentElement.textContent;
+        const todos = JSON.parse(localStorage.getItem("todos"));
+        for(let i=0; i<todos.length;i++){
+            if(todos[i] === text){
+                todos.splice(i, 1);
+            }
+        }
+        localStorage.setItem("todos",JSON.stringify(todos));
+        showAlert("success", "Todo removed");
+    }
+}
+
 function loadAllTodos(e){
     const todos = JSON.parse(localStorage.getItem("todos"));
     for(let i = 0; i<todos.length; i++){
