@@ -8,6 +8,15 @@ const clearButton = document.querySelector("#clear-todos");
 
 form.addEventListener("submit", addTodo);
 
+document.addEventListener("DOMContentLoaded", loadAllTodos);
+
+function loadAllTodos(e){
+    const todos = JSON.parse(localStorage.getItem("todos"));
+    for(let i = 0; i<todos.length; i++){
+        addTodoToUI(todos[i]);
+    }
+}
+
 function addTodo(e){
     e.preventDefault();
     const newTodo =  todoInput.value.trim();
