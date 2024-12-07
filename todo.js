@@ -12,6 +12,24 @@ document.addEventListener("DOMContentLoaded", loadAllTodos);
 
 secondCardBody.addEventListener("click", deleteTodo);
 
+filter.addEventListener("keyup", filterTodos);
+
+function filterTodos(e){
+    const filterValue = e.target.value.toLowerCase();
+    const listItems = document.querySelectorAll(".list-group-item");
+
+    listItems.forEach(function(item){
+        const text = item.textContent.toLowerCase();
+        if(text.indexOf(filterValue) === -1){
+            item.setAttribute("style","display : none !important");
+        }
+        else{
+            item.setAttribute("style", "display : block");
+        }
+
+    });
+}
+
 function deleteTodo(e){
     if(e.target.className === "fa fa-remove"){
         e.target.parentElement.parentElement.remove();
