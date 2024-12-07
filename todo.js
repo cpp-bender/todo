@@ -56,22 +56,36 @@ function deleteTodo(e) {
 
 function loadAllTodos(e) {
   const todos = JSON.parse(localStorage.getItem("todos"));
+  if(todos === null){
+    return;
+  }
   for (let i = 0; i < todos.length; i++) {
     addTodoToUI(todos[i]);
   }
 }
 
 function addTodo(e) {
-  e.preventDefault();
-  const newTodo = todoInput.value.trim();
+    const newTodo = todoInput.value.trim();
+    
+    if (newTodo === "") {
+        showAlert("danger", "Type a todo");
+    } else if (getAllTodos().indexOf(newTodo.toLowerCase())===-1){
+        console.log("hit");
+        addTodoToUI(newTodo);
+        addTodoToStorage(newTodo);
+        showAlert("success", "Success!");
+    } else {
+        showAlert("warning", "This todo already taken!");
+    }
+    e.preventDefault();
+}
 
-  if (newTodo === "") {
-    showAlert("danger", "Type a todo");
-  } else {
-    addTodoToUI(newTodo);
-    addTodoToStorage(newTodo);
-    showAlert("success", "Success!");
-  }
+function getAllTodos(){
+    if(JSON.parse(localStorage.getItem("todos")) === null){
+        return [];
+    }else{
+        return JSON.parse(localStorage.getItem("todos").toLocaleLowerCase());
+    }
 }
 
 function addTodoToStorage(todo) {
