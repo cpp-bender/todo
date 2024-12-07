@@ -17,8 +17,21 @@ function addTodo(e){
     }
     else{
         addTodoToUI(newTodo);
+        addTodoToStorage(newTodo);
         showAlert("success", "Success!");
     }
+}
+
+function addTodoToStorage(todo){
+    let todos;
+    if(localStorage.getItem("todos") === null){
+        todos = [];
+    }
+    else{
+        todos =JSON.parse(localStorage.getItem("todos")); 
+    }
+    todos.push(todo);
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 function showAlert(type, mes){
