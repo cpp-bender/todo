@@ -6,12 +6,33 @@ const secondCardBody = document.querySelectorAll(".card-body")[1];
 const filter = document.querySelector("#filter");
 const clearButton = document.querySelector("#clear-todos");
 
-
 form.addEventListener("submit", addTodo);
 
 function addTodo(e){
     e.preventDefault();
     const newTodo =  todoInput.value.trim();
+
+    if(newTodo === ""){
+        showAlert("danger", "Type a todo");
+    }
+    else{
+        addTodoToUI(newTodo);
+        showAlert("success", "Success!");
+    }
+}
+
+function showAlert(type, mes){
+    const alert = document.createElement("div");
+    alert.className = `alert alert-${type}`;
+    alert.innerHTML = `<strong>${mes}</strong>`;
+    firstCardBody.appendChild(alert);
+
+    window.setTimeout(function(){
+        alert.remove();
+    }, 1000);
+}
+
+function addTodoToUI(newTodo){
     const listItem = document.createElement("li");
     const link = document.createElement("a");
     link.href = "#";
@@ -23,4 +44,3 @@ function addTodo(e){
     todoList.appendChild(listItem);
     todoInput.value = "";
 }
-
