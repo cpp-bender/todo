@@ -6,18 +6,18 @@ const secondCardBody = document.querySelectorAll(".card-body")[1];
 const filter = document.querySelector("#filter");
 const clearButton = document.querySelector("#clear-todos");
 
-form.addEventListener("submit", addTodo);
+LoadEventListeners();
 
-document.addEventListener("DOMContentLoaded", loadAllTodos);
+function LoadEventListeners(){
+  form.addEventListener("submit", addTodo);
+  document.addEventListener("DOMContentLoaded", loadAllTodos);
+  secondCardBody.addEventListener("click", deleteTodo);
+  filter.addEventListener("keyup", filterTodos);
+  clearButton.addEventListener("click", clearAllTodos);
+}
 
-secondCardBody.addEventListener("click", deleteTodo);
-
-filter.addEventListener("keyup", filterTodos);
-
-clearButton.addEventListener("click", clearAllTodos);
-
-function clearAllTodos(e) {
-  if (confirm("Are you sure, you want to delete all?")) {
+function clearAllTodos() {
+  if (confirm("Are you sure, you want to delete all todos?")) {
     do {
       todoList.removeChild(todoList.firstElementChild);
     } while (todoList.firstElementChild != null);
@@ -54,7 +54,7 @@ function deleteTodo(e) {
   }
 }
 
-function loadAllTodos(e) {
+function loadAllTodos() {
   const todos = JSON.parse(localStorage.getItem("todos"));
   if(todos === null){
     return;
@@ -84,7 +84,7 @@ function getAllTodos(){
     if(JSON.parse(localStorage.getItem("todos")) === null){
         return [];
     }else{
-        return JSON.parse(localStorage.getItem("todos").toLocaleLowerCase());
+        return JSON.parse(localStorage.getItem("todos").toLowerCase());
     }
 }
 
