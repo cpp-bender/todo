@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="author" content="cppbender">
+    <meta name="description" content="Todo app using JavaScript">
+    <meta name="keywords" content="HTML, CSS, JavaScript,">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -15,12 +18,14 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/style.css" />
-    <title>Todo List</title>
+    <title>Todo App</title>
   </head>
   <body>
     <div class="container">
       <div class="card row">
-        <div class="card-header">Todo List</div>
+        <div class="card-header">
+          <h5>Todo List</h5>
+        </div>
         
         <div class="card-body">
           <form id="todo-form" name="form">
@@ -31,17 +36,16 @@
                   type="text"
                   name="todo"
                   id="todo"
-                  placeholder="Type a todo"
+                  placeholder="Type here"
                 />
               </div>
             </div>
             <button type="submit" class="btn btn-danger">Add Todo</button>
+            <hr>
           </form>
-          <hr />
         </div>
 
         <div class="card-body">
-          <hr />
           <h5 class="card-title" id="tasks-title">Todos</h5>
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -50,23 +54,15 @@
                 type="text"
                 name="filter"
                 id="filter"
-                placeholder="Search a todo"
+                placeholder="Search"
               />
             </div>
           </div>
 
-          <hr />
           <ul class="list-group">
-            <!-- <li class="list-group-item d-flex justify-content-between">
-                            Todo 1
-                            <a href = "#" class ="delete-item">
-                                <i class = "fa fa-remove"></i>
-                            </a>
-
-                        </li>-->
           </ul>
           <hr />
-          <a id="clear-todos" class="btn btn-dark" href="#"
+          <a id="clear-todos" class="btn btn-danger" href="#"
             >Clear all tasks</a
           >
         </div>
